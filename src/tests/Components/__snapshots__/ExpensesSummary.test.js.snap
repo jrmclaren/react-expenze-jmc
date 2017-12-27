@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render default message correctly 1`] = `
+<p>
+  No expenses
+</p>
+`;
+
+exports[`should render multiple expense summary correctly 1`] = `
+<p>
+  You are viewing 3 expenses with a total of $1,141.95
+</p>
+`;
+
+exports[`should render single expense sumarry correctly 1`] = `
+<p>
+  You are viewing 1 expense with a total of 
+  $1.95
+</p>
+`;
