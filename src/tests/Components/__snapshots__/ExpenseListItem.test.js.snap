@@ -13,11 +13,11 @@ exports[`should render expense list item using fixtures expense [0]:  1`] = `
   </Link>
   <p>
     Amount: 
-    195
+    $1.95
   </p>
   <p>
      Timestamp: 
-    0
+    1st January, 1970
   </p>
 </div>
 `;
