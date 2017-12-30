@@ -6,6 +6,9 @@
   "author": "JMc",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": "6.11.2"
+  },
   "scripts": {
     "build:dev": "webpack",
     "build:prod": " webpack -p --env production",
