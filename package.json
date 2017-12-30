@@ -14,6 +14,7 @@
     "build:prod": " webpack -p --env production",
     "dev-server": "webpack-dev-server",
     "test": "cross-env NODE_ENV=test jest --config=jest.config.json",
+    "test:watch": "yarn test --watch",
     "start": "node server/server.js",
     "heroku-postbuild": "yarn run build:prod",
     "push:all": "git push && git push heroku"
@@ -30,6 +31,7 @@
     "express": "4.15.4",
     "extract-text-webpack-plugin": "3.0.0",
     "firebase": "4.2.0",
+    "history": "4.7.2",
     "moment": "2.18.1",
     "node-sass": "4.5.3",
     "normalize.css": "7.0.0",
