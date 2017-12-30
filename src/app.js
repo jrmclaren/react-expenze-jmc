@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import { ID } from './utils';
 import AppRouter from './Routers/AppRouter';
 import configureStore from './Store/configureStore';
-import { addExpense } from './Actions/expenses';
+import { startSetExpenses } from './Actions/expenses';
 import { setTextFilter } from './Actions/filters';
 import getVisibleExpenses from './Selectors/expenses';
 import 'normalize.css/normalize.css';
 import './styles/styles.scss';
 import 'react-dates/lib/css/_datepicker.css';
 import './firebase/firebase';
+
 
 const store = configureStore();
 
@@ -20,4 +21,9 @@ const jsx = (
 </Provider>
 );
 
-ReactDOM.render(jsx, ID('app'));
+ReactDOM.render(<p>Loading..</p>, ID('app'));
+store.dispatch(startSetExpenses()).then(() => {
+
+  ReactDOM.render(jsx, ID('app'));
+
+});

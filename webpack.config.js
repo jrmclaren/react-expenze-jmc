@@ -3,12 +3,16 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const PATH = path.join(__dirname, 'public');
 
-process.env.NODE_ENV = process.env.NODE_END || 'development';
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-if(process.env.NODE_ENV === 'test'){
-  require('dotenv').config({ path: '.env.test' });
-} else if (process.env.NODE_ENV === 'production' ){
-  require('dotenv').config({ path: '.env.developement' });
+if (process.env.NODE_ENV === 'test') {
+  require('dotenv').config({
+    path: '.env.test'
+  });
+} else if (process.env.NODE_ENV === 'development') {
+  require('dotenv').config({
+    path: '.env.developement'
+  });
 }
 
 module.exports = env => {
@@ -57,7 +61,7 @@ module.exports = env => {
         'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
         'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
       })
-      ],
+    ],
     devtool: isProduction ? 'source-map' : 'inline-source-map',
     devServer: {
       contentBase: PATH,
