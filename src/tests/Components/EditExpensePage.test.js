@@ -11,28 +11,27 @@ import expenses from '../fixtures/expenses';
 // should handle startRemoveExpense
 // spies
 
-let editExpense,
+let startEditExpense,
   startRemoveExpense,
   wrapper,
   history
 beforeEach(() => {
-  editExpense = jest.fn();
+  startEditExpense = jest.fn();
   startRemoveExpense = jest.fn();
   history = {
     push: jest.fn()
   };
-  wrapper = shallow(<EditExpensePage onSubmit={editExpense} startRemoveExpense={startRemoveExpense} history={history} expense={expenses[1]} />);
+  wrapper = shallow(<EditExpensePage startEditExpense={startEditExpense} startRemoveExpense={startRemoveExpense} history={history} expense={expenses[1]} />);
 });
 
 test('should render edit expense page, correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should handle editExpense', () => {
-  const value = 'Test'
+test('should handle startEditExpense', () => {
   wrapper.find('ExpenseForm').prop('onSubmit')(expenses[1])
   expect(history.push).toHaveBeenLastCalledWith('/');
-  expect(editExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1]);
+  expect(startEditExpense).toHaveBeenLastCalledWith(expenses[1].id, expenses[1]);
 });
 
 test('should handle remove expense', () => {

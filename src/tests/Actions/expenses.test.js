@@ -1,13 +1,5 @@
 
-import { 
-  startAddExpense,
-  addExpense,
-  editExpense,
-  startRemoveExpense,
-  removeExpense,
-  setExpenses,
-  startSetExpenses 
-} from '../../Actions/expenses';
+import { startAddExpense, addExpense, editExpense, startEditExpense, startRemoveExpense, removeExpense, setExpenses, startSetExpenses } from '../../Actions/expenses';
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import expenses from '../fixtures/expenses';
@@ -35,16 +27,18 @@ beforeEach(done => {
 test('should remove expense from firebase', done => {
   const store = createMockStore({});
   const id = expenses[2].id;
-  store.dispatch(startRemoveExpense({ id })).then( () => {
+  store.dispatch(startRemoveExpense({
+    id
+  })).then(() => {
     const actions = store.getActions();
     expect(actions[0]).toEqual({
       type: 'REMOVE_EXPENSE',
       id
     });
     return database.ref(`expenses/${id}`).once('value');
-  }).then( snapshot => {
-      expect( snapshot.val() ).toBeFalsy();
-      done();
+  }).then(snapshot => {
+    expect(snapshot.val()).toBeFalsy();
+    done();
   });
 });
 
@@ -68,6 +62,26 @@ test(' Should return edited expense', () => {
     updates: {
       note: 'updated note'
     }
+  });
+});
+
+test('Should edit from expense and on firebase', done => {
+  const store = createMockStore();
+  const id = expenses[0].id,
+    updates = {
+      description: 'Updated'
+    };
+  store.dispatch(startEditExpense(id, updates)).then(() => {
+    const actions = store.getActions();
+    expect(actions[0]).toEqual({
+      type: 'EDIT_EXPENSE',
+      id,
+      updates
+    });
+    return database.ref(`expenses/${id}`).once('value')
+  }).then(snapshot => {
+    expect(snapshot.val().description).toBe(updates.description);
+    done();
   });
 });
 // Add expense test

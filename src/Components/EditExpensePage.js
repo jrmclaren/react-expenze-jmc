@@ -1,25 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editExpense, startRemoveExpense } from '../Actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../Actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 
 // Refactor to class based component 
 // setup mapDispatchToProps ( editExpense, startRemoveExpense ) => dispatch
 
-
 export class EditExpensePage extends React.Component {
   constructor(props) {
     super(props);
   }
-  startRemoveExpense =  e => {
+  startRemoveExpense = e => {
     this.props.startRemoveExpense({
       id: this.props.expense.id
     });
     this.props.history.push('/');
   }
-  editExpense = expense => {
-    this.props.onSubmit(this.props.expense.id, expense);
+  startEditExpense = expense => {
+    this.props.startEditExpense(this.props.expense.id, expense);
     this.props.history.push('/');
   }
   render() {
@@ -27,7 +26,7 @@ export class EditExpensePage extends React.Component {
       <div>
 				<ExpenseForm
       expense={this.props.expense}
-      onSubmit={this.editExpense}
+      onSubmit={this.startEditExpense}
       />
 			<button  onClick={this.startRemoveExpense}>Remove</button> 
 		</div>
@@ -35,7 +34,7 @@ export class EditExpensePage extends React.Component {
   }
 }
 const mapDispatchToProps = (dispatch, props) => ({
-  editExpense: (id, expense) => dispatch(editExpense(id, expense)),
+  startEditExpense: (id, expense) => dispatch(startEditExpense(id, expense)),
   startRemoveExpense: expense => dispatch(startRemoveExpense(expense))
 })
 const mapStateToProps = (state, props) => {
