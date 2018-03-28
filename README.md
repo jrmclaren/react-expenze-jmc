@@ -8,3 +8,5 @@ and learn more about React and Redux.
 
 Alrighty, `npm i && yarn run dev-server` then open
 `localhost:8080`. Enjoy :rocket: 
+
+Following Andrew Mead 
